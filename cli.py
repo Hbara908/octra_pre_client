@@ -636,11 +636,15 @@ if __name__ == "__main__":
     import warnings
     warnings.filterwarnings("ignore", category=ResourceWarning)
     
+async def runner():
     try:
-        asyncio.run(main())
-    except:
-        pass
+        await main()
+    except Exception as e:
+        print(f"Помилка: {e}")
+        await awaitkey()
     finally:
         cls()
         print(f"{c['r']}")
         os._exit(0)
+
+asyncio.run(runner())
